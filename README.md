@@ -6,6 +6,7 @@ as well as Pomodoro tool.
 ### Database
 
 The following is the structure of each project being created
+
 ```
 {"_id":{"$oid":"5c8eaaa2246320a756ef64d2"},
 "createdAt":{"$date":{"$numberLong":"1552839266802"}},
