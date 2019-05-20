@@ -2,6 +2,7 @@
 const express = require('express')
 const next = require('next')
 const compression = require('compression')
+const { version } = require('./package.json')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -14,6 +15,11 @@ app
   .then(() => {
     const server = express()
     server.use(compression())
+
+    // readiness & liveness probe endpoint
+    server.get('/version', (req, res) => {
+      res.json({ version })
+    })
 
     // Route all other urls to next "as is" - see note above about /next/ and /webpack/
     server.get('*', (req, res) => handle(req, res))
