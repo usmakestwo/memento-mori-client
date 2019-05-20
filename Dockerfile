@@ -1,15 +1,17 @@
-FROM alpine:latest
+FROM node:10
 
-# Install nginx package and remove cache
-RUN apk add --update nginx && rm -rf /var/cache/apk/*
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /
 
-# Copy basic files
-COPY config/nginx.conf /etc/nginx/nginx.conf
-COPY out /usr/share/nginx/html/
+# Installing dependencies
+COPY package*.json ./
+RUN npm install --prod
 
-EXPOSE 8080
-VOLUME ["/usr/share/nginx/html"]
+# Copying source files
+COPY . .
 
-# root user will run 'nginx: master process'
-# nobody user will run 'nginx: worker process' as dictated in the nginx.non-root.conf
-CMD ["nginx", "-g", "daemon off;"]
+# Building app
+RUN npm run build
+
+# Running the app
+CMD [ "npm", "start" ]
