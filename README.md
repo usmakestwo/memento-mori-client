@@ -6,13 +6,16 @@ as well as Pomodoro tool.
 ### Database
 
 The following is the structure of each project being created
+
 ```
-{"_id":{"$oid":"5c8eaaa2246320a756ef64d2"},
-"createdAt":{"$date":{"$numberLong":"1552839266802"}},
-"name":"Learning French",
-"description":"Learning basic conversational french",
-"uploaded":true,
-"path":"https://github.com/memento-mori-universitas/learning-french"}
+{
+  "_id": {"$oid":"5c8eaaa2246320a756ef64d2"},
+  "createdAt": {"$date":{"$numberLong":"1552839266802"}},
+  "name": "Learning French",
+  "description": "Learning basic conversational french",
+  "uploaded": true,
+  "path": "https://github.com/memento-mori-universitas/learning-french"
+}
 ```
 
 ### Initial UI Design
