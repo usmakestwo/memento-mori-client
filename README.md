@@ -26,4 +26,5 @@ The following is the structure of each project being created
 
 ### Deployment with GCP
 
-<img width="833" alt="image" src="https://user-images.githubusercontent.com/1566236/57993750-50212080-7a88-11e9-8797-2200549f082b.png">
+<img width="836" alt="image" src="https://user-images.githubusercontent.com/1566236/57993924-f8cf8000-7a88-11e9-9504-47b14e85c82d.png">
+
