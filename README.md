@@ -30,6 +30,10 @@ The following is the structure of each project being created
 
 ## Versions
 
+### [1.2.0] - 2018/05/25
+### Added
+- Offline support with next-offline
+
 ### [1.1.0] - 2018/05/25
 ### Added
 - Add dialog for application feedback
