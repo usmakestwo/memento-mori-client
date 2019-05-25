@@ -24,6 +24,10 @@ The following is the structure of each project being created
 ![Add Courses Component](https://user-images.githubusercontent.com/1566236/56462102-4cb44f80-638b-11e9-8aac-58952b05fdc3.png)
 ![Dashboard View - Pomodoro](https://user-images.githubusercontent.com/1566236/56462101-4cb44f80-638b-11e9-9e4b-ddb2662ebcc8.png)
 
+### Deployment with GCP
+
+<img width="836" alt="image" src="https://user-images.githubusercontent.com/1566236/57993924-f8cf8000-7a88-11e9-9504-47b14e85c82d.png">
+
 ## Versions
 
 ### [1.1.0] - 2018/05/25
