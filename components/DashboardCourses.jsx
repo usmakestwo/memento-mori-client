@@ -2,12 +2,12 @@
 import React from 'react'
 import Board from 'react-trello'
 import { makeStyles } from '@material-ui/styles'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
   progress: {
-    margin: 50,
+    flexGrow: 1,
   },
 })
 
@@ -33,9 +33,9 @@ function DashboardCourses(props) {
 
   return (
     <React.Fragment>
-      { isLoading ? <CircularProgress className={classes.progress} />
+      { isLoading ? <LinearProgress className={classes.progress} color="secondary" />
         : <Board data={board} draggable onCardClick={onCard} handleDragEnd={onLane} />
-    }
+      }
     </React.Fragment>
   )
 }

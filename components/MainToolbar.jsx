@@ -6,12 +6,12 @@ import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 
 const MainToolbar = (props) => {
-  const { classes, handleClickOpen } = props
+  const { root, grow, handleClickOpen } = props
   return (
-    <div className={classes.root}>
+    <div className={root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" className={grow}>
             Memento Mori Universitas
           </Typography>
           <Button
@@ -28,10 +28,8 @@ const MainToolbar = (props) => {
 }
 
 MainToolbar.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string.isRequired,
-    grow: PropTypes.string.isRequired,
-  }).isRequired,
+  root: PropTypes.string.isRequired,
+  grow: PropTypes.string.isRequired,
   handleClickOpen: PropTypes.func.isRequired,
 }
 

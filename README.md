@@ -23,3 +23,13 @@ The following is the structure of each project being created
 ![Dashboard View](https://user-images.githubusercontent.com/1566236/56462103-4cb44f80-638b-11e9-8259-14d0b8e0c937.png)
 ![Add Courses Component](https://user-images.githubusercontent.com/1566236/56462102-4cb44f80-638b-11e9-8aac-58952b05fdc3.png)
 ![Dashboard View - Pomodoro](https://user-images.githubusercontent.com/1566236/56462101-4cb44f80-638b-11e9-9e4b-ddb2662ebcc8.png)
+
+## Versions
+
+### [1.1.0] - 2018/05/25
+### Added
+- Add dialog for application feedback
+
+### [1.0.0] - 2018/05/22
+### Added
+- Initial Release
