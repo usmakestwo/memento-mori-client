@@ -20,7 +20,7 @@ const ServiceWorker = _app => (req, res) => {
   const filePath = join(__dirname, '.next', pathname)
   if (dev) {
     console.log('dev - sw from static')
-    app.serveStatic(req, res, resolve('./static/service-worker.js'))
+    _app.serveStatic(req, res, resolve('./static/service-worker.js'))
   } else {
     _app.serveStatic(req, res, filePath)
   }
