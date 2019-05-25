@@ -28,3 +28,12 @@ The following is the structure of each project being created
 
 <img width="836" alt="image" src="https://user-images.githubusercontent.com/1566236/57993924-f8cf8000-7a88-11e9-9504-47b14e85c82d.png">
 
+## Versions
+
+### [1.1.0] - 2018/05/25
+### Added
+- Add dialog for application feedback
+
+### [1.0.0] - 2018/05/22
+### Added
+- Initial Release

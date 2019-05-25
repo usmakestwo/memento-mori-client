@@ -6,7 +6,15 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles({
+  progress: {
+    marginLeft: 280,
+  },
+})
 
 function CourseDialog(props) {
   const {
@@ -14,7 +22,9 @@ function CourseDialog(props) {
     handleClose,
     createCourse,
     handleChange,
+    isCreating,
   } = props
+  const classes = useStyles()
   return (
     <React.Fragment>
       <Dialog
@@ -45,14 +55,18 @@ function CourseDialog(props) {
             onChange={handleChange}
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={createCourse} color="primary">
-              Create
-          </Button>
-          <Button onClick={handleClose} color="primary">
-              Cancel
-          </Button>
-        </DialogActions>
+        {isCreating ? <CircularProgress className={classes.progress} />
+          : (
+            <DialogActions>
+              <Button onClick={createCourse} color="primary">
+                  Create
+              </Button>
+              <Button onClick={handleClose} color="primary">
+                  Cancel
+              </Button>
+            </DialogActions>
+          )
+        }
       </Dialog>
     </React.Fragment>
   )
@@ -63,10 +77,12 @@ CourseDialog.propTypes = {
   handleClose: PropTypes.func.isRequired,
   createCourse: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  isCreating: PropTypes.bool,
 }
 
 CourseDialog.defaultProps = {
   open: false,
+  isCreating: false,
 }
 
 

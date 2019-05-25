@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Head from 'next/head'
 import Grid from '@material-ui/core/Grid'
 import MainToolbar from '../components/MainToolbar'
 import CourseDialog from '../components/CourseDialog'
 import DashboardCourses from '../components/DashboardCourses'
+import ErrorSnackDialog from '../components/ErrorSnackDialog'
 import { fetchRecord, updateRecord, createRecord } from '../api/courses'
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
@@ -20,20 +20,30 @@ const styles = {
     marginLeft: 10,
     marginRight: 10,
   },
-}
+})
 
-function IndexPage(props) {
+function IndexPage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isCreating, setIsCreating] = useState(false)
   const [course, setCourse] = useState({ name: '', description: '' })
   const [board, setBoard] = useState([])
   const [open, setOpen] = useState(false)
+  const [error, setError] = useState(false)
+  const [message, setMessage] = useState('An error occured, please try again')
+  const classes = useStyles()
 
   // Fetch todos from API
   const fetchData = async () => {
     setIsLoading(true)
-    const result = await fetchRecord()
-    setBoard({ lanes: JSON.parse(result) })
-    setIsLoading(false)
+    try {
+      const result = await fetchRecord()
+      setBoard({ lanes: JSON.parse(result) })
+      setIsLoading(false)
+    } catch (err) {
+      setIsLoading(true)
+      setMessage(err.toString())
+      setError(true)
+    }
   }
 
   // Call Todos on load
@@ -43,12 +53,15 @@ function IndexPage(props) {
 
   const createCourse = async () => {
     try {
+      setIsCreating(true)
       await createRecord(course)
+      setIsCreating(false)
       setOpen(false)
       fetchData()
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      alert(error)
+    } catch (err) {
+      setIsCreating(false)
+      setMessage(err.toString())
+      setError(true)
     }
   }
 
@@ -67,13 +80,17 @@ function IndexPage(props) {
     setOpen(false)
   }
 
+  const handleErrorClose = () => {
+    setError(false)
+  }
+
   const updateStatus = async (id, source, target) => {
     try {
       await updateRecord(id, source, target)
       fetchData()
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error)
+    } catch (err) {
+      setMessage(err.toString())
+      setError(true)
     }
   }
 
@@ -84,11 +101,12 @@ function IndexPage(props) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Grid container spacing={24}>
-        <MainToolbar {...props} handleClickOpen={handleClickOpen} />
-        <Grid item xs={12} style={styles.body}>
+        <MainToolbar {...classes} handleClickOpen={handleClickOpen} />
+        <Grid item xs={12} className={classes.body}>
           <DashboardCourses
             board={board}
             isLoading={isLoading}
+            error={error}
             fetchData={() => fetchData()}
             updateStatus={(id, status, target) => updateStatus(id, status, target)}
           />
@@ -98,15 +116,16 @@ function IndexPage(props) {
           handleClose={handleClose}
           createCourse={createCourse}
           handleChange={handleChange}
+          isCreating={isCreating}
+        />
+        <ErrorSnackDialog
+          error={error}
+          message={message}
+          handleErrorClose={handleErrorClose}
         />
       </Grid>
     </React.Fragment>
   )
 }
 
-
-IndexPage.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
-
-export default withStyles(styles)(IndexPage)
+export default IndexPage
