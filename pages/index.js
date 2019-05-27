@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import Head from 'next/head'
 import Grid from '@material-ui/core/Grid'
+import Error from 'next/error'
 import MainToolbar from '../components/MainToolbar'
 import CourseDialog from '../components/CourseDialog'
 import DashboardCourses from '../components/DashboardCourses'
@@ -103,13 +104,17 @@ function IndexPage() {
       <Grid container spacing={24}>
         <MainToolbar {...classes} handleClickOpen={handleClickOpen} />
         <Grid item xs={12} className={classes.body}>
-          <DashboardCourses
-            board={board}
-            isLoading={isLoading}
-            error={error}
-            fetchData={() => fetchData()}
-            updateStatus={(id, status, target) => updateStatus(id, status, target)}
-          />
+          { error ? <Error />
+            : (
+              <DashboardCourses
+                board={board}
+                isLoading={isLoading}
+                error={error}
+                fetchData={() => fetchData()}
+                updateStatus={(id, status, target) => updateStatus(id, status, target)}
+              />
+            )
+          }
         </Grid>
         <CourseDialog
           open={open}
