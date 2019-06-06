@@ -30,18 +30,23 @@ The following is the structure of each project being created
 
 ## Versions
 
-### [1.2.1] - 2018/05/27
+### [1.2.2] - 2019/06/06
+### Added
+- Added lock UI component
+- Improved dashboard color
+
+### [1.2.1] - 2019/05/27
 ### Added
 - Error component
 
-### [1.2.0] - 2018/05/25
+### [1.2.0] - 2019/05/25
 ### Added
 - Offline support with next-offline
 
-### [1.1.0] - 2018/05/25
+### [1.1.0] - 2019/05/25
 ### Added
 - Add dialog for application feedback
 
-### [1.0.0] - 2018/05/22
+### [1.0.0] - 2019/05/22
 ### Added
 - Initial Release
