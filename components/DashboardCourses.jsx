@@ -17,6 +17,7 @@ function DashboardCourses(props) {
     board,
     isLoading,
     updateStatus,
+    draggable,
   } = props
 
   const onCard = (id, metadata, laneID) => {
@@ -34,7 +35,15 @@ function DashboardCourses(props) {
   return (
     <React.Fragment>
       { isLoading ? <LinearProgress className={classes.progress} color="secondary" />
-        : <Board data={board} draggable onCardClick={onCard} handleDragEnd={onLane} />
+        : (
+          <Board
+            data={board}
+            draggable={draggable}
+            onCardClick={onCard}
+            handleDragEnd={onLane}
+            style={{ backgroundColor: '#0097a7', padding: 10 }}
+          />
+        )
       }
     </React.Fragment>
   )
@@ -47,6 +56,7 @@ DashboardCourses.propTypes = {
   ]).isRequired,
   isLoading: PropTypes.bool.isRequired,
   updateStatus: PropTypes.func.isRequired,
+  draggable: PropTypes.bool.isRequired,
 }
 
 export default DashboardCourses
