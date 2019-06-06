@@ -18,8 +18,10 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   body: {
-    marginLeft: 10,
-    marginRight: 10,
+    padding: 0,
+  },
+  actionBtn: {
+    color: '#fff',
   },
 })
 
@@ -30,6 +32,7 @@ function IndexPage() {
   const [board, setBoard] = useState([])
   const [open, setOpen] = useState(false)
   const [error, setError] = useState(false)
+  const [draggable, setDraggable] = useState(true)
   const [message, setMessage] = useState('An error occured, please try again')
   const classes = useStyles()
 
@@ -85,6 +88,10 @@ function IndexPage() {
     setError(false)
   }
 
+  const isDraggable = (isDraggableState) => {
+    setDraggable(isDraggableState)
+  }
+
   const updateStatus = async (id, source, target) => {
     try {
       await updateRecord(id, source, target)
@@ -101,8 +108,13 @@ function IndexPage() {
         <title>Memento Mori Universitas</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Grid container spacing={24}>
-        <MainToolbar {...classes} handleClickOpen={handleClickOpen} />
+      <Grid container>
+        <MainToolbar
+          {...classes}
+          handleClickOpen={handleClickOpen}
+          draggable={draggable}
+          isDraggable={isDraggable}
+        />
         <Grid item xs={12} className={classes.body}>
           { error ? <Error />
             : (
@@ -110,6 +122,7 @@ function IndexPage() {
                 board={board}
                 isLoading={isLoading}
                 error={error}
+                draggable={draggable}
                 fetchData={() => fetchData()}
                 updateStatus={(id, status, target) => updateStatus(id, status, target)}
               />

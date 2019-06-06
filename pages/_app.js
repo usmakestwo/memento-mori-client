@@ -4,6 +4,18 @@ import React from 'react'
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+
+/**
+ * Define theme for starter-kit
+ * Documentation: https://material-ui.com/customization/themes/
+ * Colour Pallet: https://color.adobe.com/create/color-wheel/
+ */
+const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+  },
+})
 
 export default class ProjectViewerApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -38,11 +50,13 @@ export default class ProjectViewerApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <Container>
-        {this.renderHead()}
-        <CssBaseline />
-        <Component {...pageProps} />
-      </Container>
+      <MuiThemeProvider theme={theme}>
+        <Container>
+          {this.renderHead()}
+          <CssBaseline />
+          <Component {...pageProps} />
+        </Container>
+      </MuiThemeProvider>
     )
   }
 }
