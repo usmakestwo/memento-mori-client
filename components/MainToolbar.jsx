@@ -25,7 +25,7 @@ const MainToolbar = (props) => {
             Memento Mori Universitas
           </Typography>
           <Button size="large" className={actionBtn}>
-            {draggable ? <LockOpen onClick={isDraggable} /> : <Lock onClick={isDraggable} />}
+            {draggable ? <LockOpen onClick={() => isDraggable(false)} /> : <Lock onClick={() => isDraggable(true)} />}
           </Button>
           <Button size="large" className={actionBtn}>
             <AddIcon onClick={handleClickOpen} />

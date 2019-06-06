@@ -88,9 +88,8 @@ function IndexPage() {
     setError(false)
   }
 
-  const isDraggable = () => {
-    console.log('lock or not')
-    setDraggable(!draggable)
+  const isDraggable = (isDraggableState) => {
+    setDraggable(isDraggableState)
   }
 
   const updateStatus = async (id, source, target) => {
