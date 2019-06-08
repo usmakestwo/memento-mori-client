@@ -19,15 +19,15 @@
     "@material-ui/styles": "^4.0.2",
     "fastify": "^2.4.1",
     "next": "^8.1.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-manifest": "^2.0.0",
     "next-offline": "^4.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draggable": "^3.3.0",
     "react-trello": "^2.1.4",
-    "styled-components": "^4.3.0",
-    "next-compose-plugins": "^2.2.0",
-    "next-manifest": "^2.0.0"
+    "styled-components": "^4.3.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

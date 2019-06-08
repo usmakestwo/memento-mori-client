@@ -27,7 +27,7 @@ fastify.register((fastify, opts, next) => {
       })
 
       fastify.get('/service-worker.js', (req, reply) => {
-        const filePath = join(__dirname, 'build', '/service-worker.js')
+        const filePath = join(__dirname, '.next', '/service-worker.js')
         app.serveStatic(req.req, reply.res, filePath)
       })
 

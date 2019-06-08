@@ -21,10 +21,6 @@ const manifest = {
   background_color: '#ffffff',
 }
 
-const nextConfig = {
-  distDir: 'build',
-}
-
 module.exports = withPlugins([
   [withManifest({ manifest })],
   [withOffline, {
@@ -71,4 +67,4 @@ module.exports = withPlugins([
       ],
     },
   }],
-], nextConfig)
+])
