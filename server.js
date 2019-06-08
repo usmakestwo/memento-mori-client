@@ -2,6 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 const fastify = require('fastify')({ logger: { level: 'error' } })
+const path = require('path')
 const Next = require('next')
 
 const { version } = require('./package.json')
@@ -23,6 +24,10 @@ fastify.register((fastify, opts, next) => {
 
       fastify.get('/version', (req, reply) => {
         reply.send({ version })
+      })
+
+      fastify.get('/sw.js', (req, reply) => {
+        app.serveStatic(req.req, reply.res, path.resolve('./static/sw.js'))
       })
 
       fastify.get('/*', async (req, reply) => {

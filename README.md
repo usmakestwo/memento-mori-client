@@ -30,6 +30,13 @@ The following is the structure of each project being created
 
 ## Versions
 
+### [1.3.0] - 2019/06/07
+### Fix
+- Replaced Express with Fastify
+### Added
+- Add caching strategies to improve performance
+- Add manifest file
+
 ### [1.2.2] - 2019/06/06
 ### Added
 - Added lock UI component
