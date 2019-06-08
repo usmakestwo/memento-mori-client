@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 const fastify = require('fastify')({ logger: { level: 'error' } })
-const path = require('path')
+const { join } = require('path')
 const Next = require('next')
 
 const { version } = require('./package.json')
@@ -26,8 +26,9 @@ fastify.register((fastify, opts, next) => {
         reply.send({ version })
       })
 
-      fastify.get('/sw.js', (req, reply) => {
-        app.serveStatic(req.req, reply.res, path.resolve('./static/sw.js'))
+      fastify.get('/service-worker.js', (req, reply) => {
+        const filePath = join(__dirname, 'build', '/service-worker.js')
+        app.serveStatic(req.req, reply.res, filePath)
       })
 
       fastify.get('/*', async (req, reply) => {
@@ -35,8 +36,8 @@ fastify.register((fastify, opts, next) => {
         reply.sent = true
       })
 
-      fastify.setNotFoundHandler(async (request, reply) => {
-        await app.render404(request.req, reply.res)
+      fastify.setNotFoundHandler(async (req, reply) => {
+        await app.render404(req.req, reply.res)
         reply.sent = true
       })
 
