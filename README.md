@@ -30,6 +30,11 @@ The following is the structure of each project being created
 
 ## Versions
 
+### [1.3.1] - 2019/07/08
+### Added
+- Network indicator
+- Updated packages
+
 ### [1.3.0] - 2019/06/07
 ### Fix
 - Replaced Express with Fastify

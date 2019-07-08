@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import AddIcon from '@material-ui/icons/Add'
 import Lock from '@material-ui/icons/Lock'
 import LockOpen from '@material-ui/icons/LockOpen'
+import SignalWifi4Bar from '@material-ui/icons/SignalWifi4Bar'
+import SignalWifiOff from '@material-ui/icons/SignalWifiOff'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 
@@ -16,6 +18,7 @@ const MainToolbar = (props) => {
     draggable,
     isDraggable,
     actionBtn,
+    online,
   } = props
   return (
     <div className={root}>
@@ -25,7 +28,11 @@ const MainToolbar = (props) => {
             Memento Mori Universitas
           </Typography>
           <Button size="large" className={actionBtn}>
-            {draggable ? <LockOpen onClick={() => isDraggable(false)} /> : <Lock onClick={() => isDraggable(true)} />}
+            { online ? <SignalWifi4Bar /> : <SignalWifiOff /> }
+          </Button>
+          <Button size="large" className={actionBtn}>
+            {draggable ? <LockOpen onClick={() => isDraggable(false)} />
+              : <Lock onClick={() => isDraggable(true)} />}
           </Button>
           <Button size="large" className={actionBtn}>
             <AddIcon onClick={handleClickOpen} />
@@ -43,6 +50,7 @@ MainToolbar.propTypes = {
   handleClickOpen: PropTypes.func.isRequired,
   isDraggable: PropTypes.func.isRequired,
   draggable: PropTypes.bool.isRequired,
+  online: PropTypes.bool.isRequired,
 }
 
 export default MainToolbar
