@@ -34,7 +34,7 @@ function IndexPage() {
   const [open, setOpen] = useState(false)
   const [error, setError] = useState(false)
   const [draggable, setDraggable] = useState(true)
-  const [online, isOnline] = useState(true)
+  const [online, setOnline] = useState(true)
   const [message, setMessage] = useState('An error occured, please try again')
   const classes = useStyles()
 
@@ -55,7 +55,7 @@ function IndexPage() {
   // Call Todos on load
   useEffect(() => {
     fetchData()
-    isOnline(navigator.onLine)
+    setOnline(navigator.onLine)
   }, [])
 
   const createCourse = async () => {
