@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
@@ -33,6 +34,7 @@ function IndexPage() {
   const [open, setOpen] = useState(false)
   const [error, setError] = useState(false)
   const [draggable, setDraggable] = useState(true)
+  const [online, isOnline] = useState(true)
   const [message, setMessage] = useState('An error occured, please try again')
   const classes = useStyles()
 
@@ -53,6 +55,7 @@ function IndexPage() {
   // Call Todos on load
   useEffect(() => {
     fetchData()
+    isOnline(navigator.onLine)
   }, [])
 
   const createCourse = async () => {
@@ -114,6 +117,7 @@ function IndexPage() {
           handleClickOpen={handleClickOpen}
           draggable={draggable}
           isDraggable={isDraggable}
+          online={online}
         />
         <Grid item xs={12} className={classes.body}>
           { error ? <Error />
