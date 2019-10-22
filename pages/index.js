@@ -9,7 +9,9 @@ import MainToolbar from '../components/MainToolbar'
 import CourseDialog from '../components/CourseDialog'
 import DashboardCourses from '../components/DashboardCourses'
 import ErrorSnackDialog from '../components/ErrorSnackDialog'
+import GlobalSearch from '../components/GlobalSearch'
 import { fetchRecord, updateRecord, createRecord } from '../api/courses'
+import search from '../utils/search'
 
 const useStyles = makeStyles({
   root: {
@@ -36,6 +38,7 @@ function IndexPage() {
   const [draggable, setDraggable] = useState(true)
   const [online, setOnline] = useState(true)
   const [message, setMessage] = useState('An error occured, please try again')
+  const [query, setQuery] = useState('')
   const classes = useStyles()
 
   // Fetch todos from API
@@ -105,6 +108,14 @@ function IndexPage() {
     }
   }
 
+  const handleChangeSearch = (event) => {
+    setQuery(event.target.value)
+    /**
+     * @TODO: Update the UI with the filtered board
+     */
+    // const filteredresult = search(board, query)
+  }
+
   return (
     <React.Fragment>
       <Head>
@@ -119,6 +130,8 @@ function IndexPage() {
           isDraggable={isDraggable}
           online={online}
         />
+        <GlobalSearch handleChangeEvent={handleChangeSearch} query={query} />
+        {query}
         <Grid item xs={12} className={classes.body}>
           { error ? <Error />
             : (

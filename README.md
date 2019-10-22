@@ -30,6 +30,10 @@ The following is the structure of each project being created
 
 ## Versions
 
+### [1.4.0] - 2019/10/22
+### Added
+- Search bar functionality
+
 ### [1.3.1] - 2019/07/08
 ### Added
 - Network indicator
