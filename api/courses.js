@@ -51,3 +51,13 @@ export const createRecord = async (payload) => {
   })
   return res.status
 }
+
+/**
+ * Returns a promise with from the Courses API to delete a course
+ * @param {integer} cardId - Card ID
+ * @param {string} lane - Lane
+ * @returns Promise
+ */
+export const deleteRecord = (cardId, lane) => {
+  console.log(`deleting this card ${cardId} from ${lane}`)
+}

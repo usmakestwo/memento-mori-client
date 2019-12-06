@@ -17,6 +17,7 @@ function DashboardCourses(props) {
     board,
     isLoading,
     updateStatus,
+    deleteCard,
     draggable,
   } = props
 
@@ -32,15 +33,20 @@ function DashboardCourses(props) {
     }
   }
 
+  const onCardDelete = (cardId, laneId) => {
+    deleteCard(cardId, laneId)
+  }
+
   return (
     <React.Fragment>
       { isLoading ? <LinearProgress className={classes.progress} color="secondary" />
         : (
           <Board
             data={board}
-            draggable={draggable}
+            draggable={false}
             onCardClick={onCard}
             handleDragEnd={onLane}
+            onCardDelete={onCardDelete}
             style={{ backgroundColor: '#0097a7', padding: 10 }}
           />
         )
@@ -56,6 +62,7 @@ DashboardCourses.propTypes = {
   ]).isRequired,
   isLoading: PropTypes.bool.isRequired,
   updateStatus: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
   draggable: PropTypes.bool.isRequired,
 }
 

@@ -9,7 +9,12 @@ import MainToolbar from '../components/MainToolbar'
 import CourseDialog from '../components/CourseDialog'
 import DashboardCourses from '../components/DashboardCourses'
 import ErrorSnackDialog from '../components/ErrorSnackDialog'
-import { fetchRecord, updateRecord, createRecord } from '../api/courses'
+import {
+  fetchRecord,
+  updateRecord,
+  createRecord,
+  deleteRecord,
+} from '../api/courses'
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +43,9 @@ function IndexPage() {
   const [message, setMessage] = useState('An error occured, please try again')
   const classes = useStyles()
 
-  // Fetch todos from API
+  /**
+   * Makes call to database
+   */
   const fetchData = async () => {
     setIsLoading(true)
     try {
@@ -52,12 +59,17 @@ function IndexPage() {
     }
   }
 
-  // Call Todos on load
+  /**
+   * Fetches data on load
+   */
   useEffect(() => {
     fetchData()
     setOnline(navigator.onLine)
   }, [])
 
+  /**
+   * Creates a new course
+   */
   const createCourse = async () => {
     try {
       setIsCreating(true)
@@ -72,6 +84,35 @@ function IndexPage() {
     }
   }
 
+  /**
+   * Updates card to different swimlanes
+   * @param {integer} id - Card ID
+   * @param {string} source - Source column
+   * @param {string} target - Target column
+   */
+  const updateStatus = async (id, source, target) => {
+    try {
+      await updateRecord(id, source, target)
+      fetchData()
+    } catch (err) {
+      setMessage(err.toString())
+      setError(true)
+    }
+  }
+
+  /**
+   * Delete a card from the database
+   * @param {integer} id - Card ID
+   * @param {string} laneId - Lane
+   */
+  const deleteCard = async (id, laneId) => {
+    deleteRecord(id, laneId)
+  }
+
+  /**
+   * Event handler for cards
+   * @param {object} event - DOM event
+   */
   const handleChange = (event) => {
     setCourse({
       ...course,
@@ -93,16 +134,6 @@ function IndexPage() {
 
   const isDraggable = (isDraggableState) => {
     setDraggable(isDraggableState)
-  }
-
-  const updateStatus = async (id, source, target) => {
-    try {
-      await updateRecord(id, source, target)
-      fetchData()
-    } catch (err) {
-      setMessage(err.toString())
-      setError(true)
-    }
   }
 
   return (
@@ -129,6 +160,7 @@ function IndexPage() {
                 draggable={draggable}
                 fetchData={() => fetchData()}
                 updateStatus={(id, status, target) => updateStatus(id, status, target)}
+                deleteCard={(id, laneId) => deleteCard(id, laneId)}
               />
             )
           }
