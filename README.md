@@ -30,6 +30,11 @@ The following is the structure of each project being created
 
 ## Versions
 
+### [1.3.1] - 2019/12/06
+### Update
+- Updated packaged
+- Migrated to Next.js v.9
+
 ### [1.3.1] - 2019/07/08
 ### Added
 - Network indicator

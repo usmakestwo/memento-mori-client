@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable class-methods-use-this */
 import React from 'react'
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import Head from 'next/head'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Manifest from 'next-manifest/manifest'
@@ -50,11 +50,9 @@ export default class ProjectViewerApp extends App {
     const { Component, pageProps } = this.props
     return (
       <MuiThemeProvider theme={theme}>
-        <Container>
-          {this.renderHead()}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </Container>
+        {this.renderHead()}
+        <CssBaseline />
+        <Component {...pageProps} />
       </MuiThemeProvider>
     )
   }
