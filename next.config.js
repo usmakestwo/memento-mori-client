@@ -3,6 +3,7 @@ const withManifest = require('next-manifest')
 const { withPlugins } = require('next-compose-plugins')
 
 const manifest = {
+  output: './public',
   short_name: 'memento-mori',
   name: 'memento-mori-client',
   description: 'A client application for optimizing learning',

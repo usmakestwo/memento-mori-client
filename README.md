@@ -30,7 +30,11 @@ The following is the structure of each project being created
 
 ## Versions
 
-### [1.3.1] - 2019/12/06
+### [1.3.3] - 2019/12/06
+### Fix
+- Added output dir to next-manifest
+
+### [1.3.2] - 2019/12/06
 ### Update
 - Updated packaged
 - Migrated to Next.js v.9
